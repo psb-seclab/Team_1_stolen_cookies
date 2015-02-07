@@ -4,19 +4,11 @@ function Run()
 	TestSetCookie("person", "jeff", 1);
 	// Run GetTestCookie
 	GetTestCookie("person");
-	Steal("mint");
 }
 
 function Steal(cname)
 {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
+
 }
 
 function Transmit()
@@ -33,8 +25,13 @@ function TestSetCookie(cookiename, cookievalue, cookieexp)
 	document.cookie = cookiename + "=" + cookievalue + ";";
 }
 
+//
 function GetTestCookie(cookiename)
 {
+	// A list of common cookie value names
+	//var commonNames = ["username", "name", "login", "email"];
+
 	var strings = document.cookie.split(";");
-	document.getElementById("cookiedata").innerHTML = strings[0];
+	document.getElementById("cookiedata").innerHTML = strings[1];
+	console.log(strings.length);
 }
